@@ -1,0 +1,8 @@
+.aem-AuthorLayer-Edit main .wb-inv {
+  clip: rect(auto, auto, auto, auto) !important;
+  height: inherit !important;
+  margin: inherit !important;
+  overflow: inherit !important;
+  position: static !important;
+  width: inherit !important;
+}
