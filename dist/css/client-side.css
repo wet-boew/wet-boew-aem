@@ -1,3 +1,6 @@
+/**
+  AEM Preview mode safe
+ */
 .aem-AuthorLayer-Edit main .wb-inv {
   clip: rect(auto, auto, auto, auto) !important;
   height: inherit !important;
@@ -5,4 +8,14 @@
   overflow: inherit !important;
   position: static !important;
   width: inherit !important;
+}
+.aem-AuthorLayer-Edit main .pull-right {
+  float: none !important;
+  width: 100% !important;
+}
+/**
+ Touch UI Overlay
+ */
+.editor-panel [data-path*="mwscolumns"] > .cq-Overlay--container {
+  top: 10px !important;
 }

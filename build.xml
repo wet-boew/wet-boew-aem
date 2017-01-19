@@ -1,4 +1,4 @@
-<project name="web-boew-aem" default="compile-less">
+<project name="web-boew-aem" default="init" basedir=".">
 
     <property name="css.dir" value="dist/css"/>
     <property name="less.dir" value="src"/>
@@ -6,13 +6,34 @@
     <property name="tool.rhino.lessc" value="lib/less/lessc-rhino-1.7.5.js"/>
     <property name="tool.rhino.less" value="lib/less/less-rhino-1.7.5.js"/>
 
-    <target name="clean-less">
+    <taskdef name="watch"
+             classname="org.apache.tools.ant.taskdefs.optional.watch.WatchTask"
+             classpath="${basedir}/lib/watch-task-1.0.jar" />
+
+
+    <target name="init">
+        <antcall target="compile"/>
+        <antcall target="run"/>
+    </target>
+
+
+    <target name="run">
+        <watch>
+            <when>
+                <target name="compile"/>
+                <fileset dir="${less.dir}" includes="**/*"/>
+            </when>
+        </watch>
+    </target>
+
+    <target name="clean">
         <delete includeEmptyDirs="true">
             <fileset dir="dist"/>
         </delete>
         <mkdir dir="${css.dir}"/>
     </target>
-    <target name="compile-less" description="compile css using LESS" depends="clean-less">
+
+    <target name="compile" description="compile css using LESS" depends="clean">
         <apply dir="${css.dir}" executable="java" parallel="false" failonerror="true">
             <fileset dir="${less.dir}">
                 <include name="client-side.less"/>
